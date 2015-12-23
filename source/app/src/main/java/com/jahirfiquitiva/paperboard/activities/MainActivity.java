@@ -56,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
     private int currentItem = -1;
     private boolean firstrun, enable_features, a;
     private Preferences mPrefs;
+	
+	private final static int REQUEST_WRITE_STORAGE_PERMISSION = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +66,16 @@ public class MainActivity extends AppCompatActivity {
 
         // Uncomment this for custom themeing
         // setTheme(R.style.CustomTheme);
+		
+		// Creates permission dialog for Marshmallow ROMs
+		if (Build.VERSION.SDK_INT >= 23 && PermissionChecker
+                .checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) !=
+                PermissionChecker.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    REQUEST_WRITE_STORAGE_PERMISSION);
+        } else {
+            // Do absolutely NOTHING
+        }
 
         // Grab a reference to the manager and store it in a variable. This helps make code shorter.
         PkRequestManager mRequestManager = PkRequestManager.getInstance(this);
