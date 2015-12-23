@@ -93,7 +93,7 @@ public class WallpapersFragment extends Fragment {
                         arraylist.add(map);
                     }
                 } catch (JSONException e) {
-                    runOnUiThread(new Runnable() {
+                    getActivity().runOnUiThread(new Runnable() {
                         public void run() {
                             Toast.makeText(getActivity(), getString(R.string.json_error_toast), Toast.LENGTH_LONG).show();
                         }
@@ -101,7 +101,7 @@ public class WallpapersFragment extends Fragment {
                     e.printStackTrace();
                 }
             } else {
-                runOnUiThread(new Runnable() {
+                getActivity().runOnUiThread(new Runnable() {
                         public void run() {
                             Toast.makeText(getActivity(), getString(R.string.json_error_toast), Toast.LENGTH_LONG).show();
                         }
